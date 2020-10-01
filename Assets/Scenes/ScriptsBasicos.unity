@@ -742,6 +742,7 @@ GameObject:
   - component: {fileID: 1220101350}
   - component: {fileID: 1220101349}
   - component: {fileID: 1220101354}
+  - component: {fileID: 1220101353}
   m_Layer: 0
   m_Name: CubeSound
   m_TagString: Untagged
@@ -823,6 +824,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1220101353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220101348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnOverEvent: 0
+  OnOutEvent: 0
+  OnClickEvent: 1
+  OnDoubleClickEvent: 0
+  OnUpEvent: 0
+  OnGrabEvent: 0
+  OnReleaseEvent: 0
 --- !u!114 &1220101354
 MonoBehaviour:
   m_ObjectHideFlags: 0
