@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityScript.Steps;
 using VRStandardAssets.Utils;
 
 public class Tiro : MonoBehaviour
