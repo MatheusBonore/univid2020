@@ -418,11 +418,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7389507112651452681, guid: 6dc4cf4496348884d8ee27743ae38562,
         type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7389507112651452681, guid: 6dc4cf4496348884d8ee27743ae38562,
-        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -820,6 +815,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 644903329}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1291174493 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7389507112651452681, guid: 6dc4cf4496348884d8ee27743ae38562,
+    type: 3}
+  m_PrefabInstance: {fileID: 644903329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1291174495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,7 +834,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 615293816}
-  velocidade: 0.01
+  velocidade: 0.002
+  animator: {fileID: 1291174493}
 --- !u!1 &1917842145
 GameObject:
   m_ObjectHideFlags: 0
