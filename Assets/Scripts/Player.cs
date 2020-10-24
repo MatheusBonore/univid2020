@@ -1,10 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inimigo : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public int vida = 10;
     // Start is called before the first frame update
     void Start()
     {
