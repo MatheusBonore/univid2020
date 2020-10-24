@@ -1,47 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using VRStandardAssets.Utils;
 
 public class Tiro : MonoBehaviour
 {
-    public int dano = 1;
-    VRInput vrInput;
-    // Start is called before the first frame update
-    void Awake()
+    public int dano;
+    public AudioClip shotSound;
+    private AudioSource audioSource;
+
+    private void Start()
     {
-        vrInput = ReferenceManagerIndependent.Instance.VRInput;
+        audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnEnable()
+    public void Update()
     {
-        vrInput.OnClick += Disparar;
-    }
-
-    private void OnDisable()
-    {
-        vrInput.OnClick -= Disparar;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Disparar()
-    {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 100))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if(hit.transform.GetComponent<Inimigo>())
+            //som de tiro
+            audioSource.PlayOneShot(shotSound, 1);
+            //TODO animacao de tiro
+
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100))
             {
-                hit.transform.GetComponent<Inimigo>().vida -= dano;
-                if (hit.transform.GetComponent<Inimigo>().vida < 0)
-                    Destroy(hit.transform.gameObject);
+                Inimigo inimigo = hit.transform.gameObject.GetComponentInParent<Inimigo>();
+                if (inimigo == null) return;
+
+                inimigo.SendMessage("HitTarget", dano);
             }
         }
-        //tocar som
-        //animacao de tiro
     }
 }
