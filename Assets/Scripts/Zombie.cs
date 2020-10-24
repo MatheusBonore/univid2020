@@ -60,7 +60,7 @@ public class Zombie : MonoBehaviour
                 this.transform.rotation = Quaternion.Slerp(
                     this.transform.rotation,
                     Quaternion.Euler(0, targetAngle, 0),
-                    Time.deltaTime
+                    distancia
                 );
                 break;
             case ZombiStates.attack:
