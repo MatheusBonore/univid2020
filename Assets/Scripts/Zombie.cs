@@ -2,55 +2,96 @@
 
 public class Zombie : MonoBehaviour
 {
-    public Transform player;
-    public float velocidade;
+    public float velocidade = 5;
 
-    private float andandoVelocidade;
-    private int morreu = 0;
-    private bool atacando = false;
+    private GameObject player;
+    private GameObject zombie;
 
-    public Animator animator;
+    private enum ZombiStates
+    {
+        wait = 0,
+        run = 1,
+        attack = 2,
+    };
+
+    private ZombiStates currentState = ZombiStates.run;
+
+    private float distancia;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        zombie = this.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (morreu.Equals(0))
+        distancia = Vector3.Distance(player.transform.position, zombie.transform.position);
+
+        if (distancia > 15)
+            currentState = ZombiStates.wait;
+        else if (distancia < 2)
+            currentState = ZombiStates.attack;
+        else
+            currentState = ZombiStates.run;
+
+        switch (currentState)
         {
-            andandoVelocidade = 0.2f;
-            // Movimentação
-            Vector3 zombie = this.transform.position;
-            zombie.x += (player.position.x - zombie.x) * velocidade;
-            zombie.z += (player.position.z - zombie.z) * velocidade;
-            zombie.y = 0;
+            case ZombiStates.wait:
+                startState(ZombiStates.wait);
+                break;
+            case ZombiStates.run:
+                startState(ZombiStates.run);
 
-            this.transform.position = zombie;
+                Vector3 zombiePostion = zombie.transform.position;
+                zombiePostion.x += (player.transform.position.x - zombiePostion.x) * (velocidade / 1000);
+                zombiePostion.z += (player.transform.position.z - zombiePostion.z) * (velocidade / 1000);
+                zombiePostion.y = 0;
 
-            // Rotação
-            Vector3 currentPosition = this.transform.position;
-            Vector3 moveDirection = player.position - currentPosition;
+                zombie.transform.position = zombiePostion;
 
-            float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+                Vector3 currentPosition = this.transform.position;
+                Vector3 moveDirection = player.transform.position - currentPosition;
 
-            this.transform.rotation = Quaternion.Slerp(
-                this.transform.rotation,
-                Quaternion.Euler(0, targetAngle, 0),
-                Time.deltaTime
-            );
+                float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+
+                this.transform.rotation = Quaternion.Slerp(
+                    this.transform.rotation,
+                    Quaternion.Euler(0, targetAngle, 0),
+                    Time.deltaTime
+                );
+                break;
+            case ZombiStates.attack:
+                startState(ZombiStates.attack);
+                break;
+            default:
+                break;
         }
-
-        atualizaParametrosAnimador();
     }
 
-    void atualizaParametrosAnimador()
+    void startState(ZombiStates newState)
     {
-        animator.SetFloat("velocidade", andandoVelocidade);
-        animator.SetInteger("morreu", morreu);
-        animator.SetBool("atacando", atacando);
+        currentState = newState;
+
+        this.transform.GetComponent<Animator>().SetBool("wait", false);
+        this.transform.GetComponent<Animator>().SetBool("run", false);
+        this.transform.GetComponent<Animator>().SetBool("attack", false);
+
+        switch (currentState)
+        {
+            case ZombiStates.wait:
+                this.transform.GetComponent<Animator>().SetBool("wait", true);
+                break;
+            case ZombiStates.run:
+                this.transform.GetComponent<Animator>().SetBool("run", true);
+                break;
+            case ZombiStates.attack:
+                this.transform.GetComponent<Animator>().SetBool("attack", true);
+                break;
+            default:
+                break;
+        }
     }
 }
