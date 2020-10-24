@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Tiro : MonoBehaviour
 {
-    public int dano = 1;
     public int dano;
     public AudioClip shotSound;
     private AudioSource audioSource;
