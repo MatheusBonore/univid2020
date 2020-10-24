@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1636194805012299143, guid: e392aca4d9373164bb2ede4beafafd16,
+        type: 3}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1976554950868301023, guid: e392aca4d9373164bb2ede4beafafd16,
         type: 3}
       propertyPath: AimCollisionLayerMask.m_Bits
@@ -1384,6 +1389,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1050597851}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1174968417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7819574391842170454, guid: e392aca4d9373164bb2ede4beafafd16,
+    type: 3}
+  m_PrefabInstance: {fileID: 18912491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1174968423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174968417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18ba303e5a54614f9035a73e7c66024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dano: 1
+  shotSound: {fileID: 8300000, guid: 3061c7b9b32d894478e4126ccce25ca3, type: 3}
 --- !u!1 &1291174492 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562,
@@ -1396,6 +1421,19 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 644903329}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1291174494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291174492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0a87e298c895a4dbbed4e7c74439aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 10
 --- !u!114 &1291174495
 MonoBehaviour:
   m_ObjectHideFlags: 0
