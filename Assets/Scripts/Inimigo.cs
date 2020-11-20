@@ -5,15 +5,14 @@ using UnityEngine;
 public class Inimigo : MonoBehaviour
 {
     public int vida = 10;
-    // Start is called before the first frame update
-    void Start()
+    public void HitTarget(int dano)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (vida == 0)
+        {
+            Destroy(this.gameObject);
+        } else
+        {
+            vida -= dano;
+        }
     }
 }
