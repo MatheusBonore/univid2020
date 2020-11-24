@@ -3,6 +3,7 @@
 public class Zombie : MonoBehaviour
 {
     public float velocidade = 5;
+    public int dano = 1;
 
     private GameObject player;
     private GameObject zombie;
@@ -65,6 +66,12 @@ public class Zombie : MonoBehaviour
                 break;
             case ZombiStates.attack:
                 startState(ZombiStates.attack);
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100))
+                {
+                    Player player = hit.transform.gameObject.GetComponentInParent<Player>();
+                    player.SendMessage("TomaDano", dano);
+                }
+                    
                 break;
             default:
                 break;
