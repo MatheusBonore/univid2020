@@ -2,8 +2,11 @@
 
 public class Zombie : MonoBehaviour
 {
-    public float velocidade = 5;
+    public int vida = 10;
     public int dano = 1;
+
+    public float velocidade = 5;
+    private float distancia;
 
     private GameObject player;
     private GameObject zombie;
@@ -14,16 +17,18 @@ public class Zombie : MonoBehaviour
         run = 1,
         attack = 2,
     };
-
     private ZombiStates currentState = ZombiStates.run;
 
-    private float distancia;
+    private AudioSource audioSource;
+    public AudioClip[] zombieAttack;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         zombie = this.gameObject;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -67,15 +72,24 @@ public class Zombie : MonoBehaviour
             case ZombiStates.attack:
                 startState(ZombiStates.attack);
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100))
-                {
-                    Player player = hit.transform.gameObject.GetComponentInParent<Player>();
-                    player.SendMessage("TomaDano", dano);
+                {                    
+                    audioSource.clip = zombieAttack[Random.Range(0,zombieAttack.Length)];
+                    audioSource.Play();
+
+                    player.SendMessage("HitTarget", dano);
                 }
-                    
                 break;
             default:
                 break;
         }
+    }
+    
+    void  HitTarget(int dano)
+    {
+        if (vida != 0)
+            vida -= dano;
+        else
+            Destroy(zombie);
     }
 
     void startState(ZombiStates newState)
