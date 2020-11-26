@@ -13,11 +13,11 @@ public class Remedio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void HitTarget()
     {
-        Destroy(remedio);        
+        Destroy(remedio);
     }
 }

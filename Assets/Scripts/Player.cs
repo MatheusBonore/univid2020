@@ -1,9 +1,12 @@
-﻿using UnityEngine.SceneManagement;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float vida = 20;
+    public float startVida = 100;
+    private float vida;
+    public Image vidaBar;
 
     private GameObject remedio;
 
@@ -13,6 +16,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        vida = startVida;
+
         remedio = GameObject.Find("Remedio");
 
         audioSource = GetComponent<AudioSource>();
@@ -28,12 +33,13 @@ public class Player : MonoBehaviour
                 if (hit.transform.gameObject == remedio)
                 {
                     vida += 50;
+                    vidaBar.fillAmount = vida / startVida;
                     remedio.SendMessage("HitTarget");
                 }
             }
         }
     }
-    
+
     public void HitTarget(float dano)
     {
         if (vida == 0)
@@ -43,6 +49,7 @@ public class Player : MonoBehaviour
             audioSource.clip = shotSound;
             audioSource.Play();
             vida -= dano;
+            vidaBar.fillAmount = vida / startVida;
         }
     }
 

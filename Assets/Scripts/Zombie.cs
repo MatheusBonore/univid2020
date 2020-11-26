@@ -78,8 +78,8 @@ public class Zombie : MonoBehaviour
             case ZombiStates.attack:
                 startState(ZombiStates.attack);
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100))
-                {                    
-                    audioSource.clip = zombieAttack[Random.Range(0,zombieAttack.Length)];
+                {
+                    audioSource.clip = zombieAttack[Random.Range(0, zombieAttack.Length)];
                     audioSource.Play();
 
                     player.SendMessage("HitTarget", dano);
@@ -89,8 +89,8 @@ public class Zombie : MonoBehaviour
                 break;
         }
     }
-    
-    void  HitTarget(float dano)
+
+    void HitTarget(float dano)
     {
         if (vida != 0)
         {

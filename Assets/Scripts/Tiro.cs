@@ -10,7 +10,7 @@ public class Tiro : MonoBehaviour
     public AudioClip shotSound;
 
     private void Start()
-    { 
+    {
         zombie = GameObject.Find("Zombie");
 
         audioSource = GetComponent<AudioSource>();
@@ -24,7 +24,7 @@ public class Tiro : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100))
             {
-                if (hit.transform.gameObject == zombie)                
+                if (hit.transform.gameObject == zombie)
                     zombie.SendMessage("HitTarget", dano);
             }
         }
