@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Zombie : MonoBehaviour
 {
-    public float vida = 10;
+    public float startVida = 100;
+    private float vida;
+    public Image vidaBar;
+
     public float dano = 1;
 
     public float velocidade = 5;
@@ -27,6 +31,8 @@ public class Zombie : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         zombie = this.gameObject;
+
+        vida = startVida;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -87,7 +93,10 @@ public class Zombie : MonoBehaviour
     void  HitTarget(float dano)
     {
         if (vida != 0)
+        {
             vida -= dano;
+            vidaBar.fillAmount = vida / startVida;
+        }
         else
             Destroy(zombie);
     }
