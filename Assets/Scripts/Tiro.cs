@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Tiro : MonoBehaviour
 {
-    public int dano;
+    public float dano;
 
     private GameObject zombie;
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int vida = 20;
+    public float vida = 20;
 
     private GameObject remedio;
 
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         }
     }
     
-    public void HitTarget(int dano)
+    public void HitTarget(float dano)
     {
         if (vida == 0)
             GameOver();

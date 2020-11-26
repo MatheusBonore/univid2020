@@ -2,8 +2,8 @@
 
 public class Zombie : MonoBehaviour
 {
-    public int vida = 10;
-    public int dano = 1;
+    public float vida = 10;
+    public float dano = 1;
 
     public float velocidade = 5;
     private float distancia;
@@ -84,7 +84,7 @@ public class Zombie : MonoBehaviour
         }
     }
     
-    void  HitTarget(int dano)
+    void  HitTarget(float dano)
     {
         if (vida != 0)
             vida -= dano;
